@@ -1,0 +1,141 @@
+%TC:ignore
+\documentclass[%
+    fontsize=12pt,
+    numbers=noenddot,
+    paper=a4,
+    toc=bib,
+]{scrartcl}
+
+% Language using polyglossia
+\usepackage{polyglossia}
+\setmainlanguage[variant=british,ordinalmonthday=false]{english}
+
+% biblatex
+\usepackage[%
+    backend=biber,
+    doi=true,
+    language=british,
+    maxbibnames=9,
+    maxcitenames=2,
+    mincrossrefs=3,
+    natbib=true,
+    sortcites,
+    style=unified,
+    useprefix=true,
+    ]{biblatex}
+
+\assignrefcontextentries[]{*}
+
+% remove "p(p)."
+\DeclareFieldFormat{postnote}{#1} % no postnote prefix in "normal" citation commands
+
+% no shorthands
+
+\DeclareFieldInputHandler{shorthand}{\def\NewValue{}}
+
+% New citeposs command, more flexible
+
+\usepackage{xifthen}
+
+% use pubstate
+
+\DeclareSourcemap{%
+    \maps[datatype=bibtex]{%
+        \map[overwrite=true]{% Notice the overwrite: replace one field with another
+            \step[fieldsource=pubstate]
+            \step[fieldset=year, origfieldval]
+        }
+    }
+}
+
+%% but don't print pubstate in the bibliography apart from the year
+
+\AtEveryBibitem{%
+    \clearfield{pubstate}%
+}
+
+%% add "to appear" as a proper pubstate, including capitalisation
+
+\NewBibliographyString{toappear}
+\DefineBibliographyStrings{english}{%
+  toappear = {to appear},
+}
+
+
+%% Fonts, languages
+
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}
+
+% kxetex
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+
+\usepackage[sb]{libertinus-otf}
+\usepackage[scale=MatchLowercase]{FiraMono}
+
+% Nicer tables
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{microtype}
+\usepackage{tabularx}
+
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage[normalem]{ulem} % for strikethrough \sout
+
+%% captions (KOMA-script)
+\setkomafont{caption}{\small}
+\setkomafont{captionlabel}{\small\bfseries}
+\renewcommand{\captionformat}{\quad}
+
+%% Headers and footers
+\usepackage[automark,markcase=lower]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\setkomafont{pagenumber}{\footnotesize}%\sffamily}
+\setkomafont{pageheadfoot}%
+    {\small\addfontfeature{LetterSpace=10,Numbers=OldStyle}\scshape\sffamily}
+\clearpairofpagestyles{}
+\ofoot[\pagemark]{\pagemark}
+\rohead{\emph{\shorttitle}}
+\lohead{\authorlast}
+
+%% Titles and headings (KOMA-Script)
+
+% Titlepage
+\setkomafont{author}{\large\sffamily}
+
+% TOC
+\setcounter{tocdepth}{2}
+\setkomafont{partentry}{\large\sffamily\bfseries}
+\KOMAoptions{headings=small}
+
+% Chapter/section headings
+\setcounter{secnumdepth}{3}
+
+% Linguistics
+\usepackage{langsci-gb4e}
+\newcommand{\judgement}[1]{\makebox[0pt][r]{#1}}
+
+%% glossary of abbreviations
+\usepackage{glossaries}
+\usepackage{glossary-inline}
+\usepackage{leipzig}
+\makeglossaries{}
+
+\usepackage{cleveref}
+\usepackage{enumitem}
+
+%% Line breaks
+\widowpenalty=10000
+\clubpenalty=10000
+
+% useful 
+\newcommand{\email}[1]{\href{mailto:#1}{#1}}
+\usepackage[autostyle=true,english=american]{csquotes}
+\renewcommand*{\mkccitation}[1]{ (#1)}
+
+% title page
+\title{\fulltitle}
+\date{}
+
+%TC:endignore

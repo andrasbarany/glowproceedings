@@ -1,0 +1,171 @@
+\input{glow-proceedings-preamble}
+
+% Add your bibliography here
+\addbibresource{main.bib}
+
+%% Specify paper metadata ----
+
+% full title of paper
+\newcommand{\fulltitle}{GLOW proceedings template}
+% short title of paper for header
+\newcommand{\shorttitle}{GLOW proceedings template}
+% last name of author(s); for multiple use X & Y; X, Y, & Z; X et al.
+\newcommand{\authorlast}{Bárány}
+
+%% Specify paper metadata ----
+
+% Specify title, author, etc.
+\author{%
+    András Bárány, Bielefeld University\\
+    \email{andras.barany@uni-bielefeld.de}
+}
+
+% Specify your own packages here (keep this to a minimum!)
+\usepackage{minted}
+\newacronym{wco}{WCO}{weak crossover}
+\usepackage{layout}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    \noindent\textbf{Abstract:} This style sheet illustrates the GLOW proceedings
+    \LaTeX{} templates and describes how to use it.\\
+
+    \noindent\textbf{Keywords:} \emph{keyword 1}, \emph{keyword 2}, \emph{keyword 3}
+\end{abstract}
+
+\section{This template}
+
+If you are reading this file, you have downloaded the GLOW proceedings template
+or you have accessed it on overleaf. This template consists of three files:
+
+\begin{itemize}
+    \item \texttt{glow-proceedings-preamble.tex}
+    \item \texttt{main.tex}
+    \item \texttt{main.bib}
+\end{itemize}
+
+You can ignore \texttt{glow-proceedings-preamble.tex} and simply work with
+\texttt{main.tex} to write your paper and \texttt{main.bib} to include your
+bibliography. If you require any additional packages, add them to
+\texttt{main.tex} just before the beginning of the document.
+
+This file describes the template and serves as a style sheet for GLOW proceedings.
+Please follow the guidelines stated here otherwise we might not be able to accept
+your submission.
+
+\section{Style guidelines}
+
+\layout
+
+\ea
+    $A = b$ a,b,c,d, $a,b,c,d,$
+\z
+
+\ea
+    \Acc{} á ʔ ø \textbf{å}
+\z
+
+\ea Semantic formula test
+\ea $\lambda P\lambda Q\forall x\big[P(x)\rightarrow \exists y[Q(x)(y)]\big]$
+\ex $\lambda Q\forall x\big[\textsc{glow member}(x)\rightarrow\exists y[Q(x)(y)]\big]$
+\z\z
+
+\section{Title and authors}
+
+\begin{verbatim}
+\author{%
+    András Bárány, Bielefeld University\\
+    \email{andras.barany@uni-bielefeld.de}
+}
+\end{verbatim}
+
+\begin{verbatim}
+\author{%
+    AuthorFirst AuthorLast, Affiliation\\
+    \href{mailto:author@affiliation.edu}{authorlast@affiliation.edu}
+    \and
+    Author2First Author2Last, Affiliation\\
+    \href{mailto:author@affiliation.edu}{author2last@affiliation.edu}
+}
+\end{verbatim}
+
+\section{Bibliography}
+
+This template uses the \texttt{biblatex} package. The most common citation
+commands are the following:
+
+\begin{itemize}
+    \item In-text citation: \verb+\textcite{EKiss2008}+ prints \enquote{\textcite{EKiss2008}}
+    \item Citation in parentheses: \verb+\parencite{EKiss2008}+ prints \enquote{\parencite{EKiss2008}}
+    \item Citation without parentheses: \verb+\cite{EKiss2008}+ prints \enquote{\cite{EKiss2008}}
+\end{itemize}
+
+Each of these commands can be extended with optional arguments:
+
+\begin{itemize}
+    \item An optional argument immediately before the citation prints post-text:
+    \begin{itemize}
+        \item \verb+\textcite[469]{EKiss2008}+ prints \enquote{\textcite[469]{EKiss2008}}
+        \item \verb+\parencite[469]{EKiss2008}+ prints \enquote{\parencite[469]{EKiss2008}}
+    \end{itemize}
+    \item A second optional argument preceding the other one prints pre-text (this doesn't work well with \verb+textcite+):
+    \begin{itemize}
+        \item \verb+\cite[cf.][469]{EKiss2008}+ prints \enquote{\cite[cf.][469]{EKiss2008}}
+        \item \verb+\parencite[cf.][]{EKiss2008}+ prints \enquote{\parencite[cf.][]{EKiss2008}}
+    \end{itemize}
+\end{itemize}
+
+You can add the bibliography to the paper using the commands shown in~\Cref{lst:bibliography}.
+
+\begin{listing}[H]
+    \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
+        \newrefcontext[sorting=nyt]
+        \printbibliography
+    \end{minted}
+    \caption{Commands to add bibliography}\label{lst:bibliography}
+\end{listing}
+
+\section{Glosses and abbreviations}
+
+The template loads the \texttt{leipzig} and \texttt{glossaries} packages. These can
+be used to insert abbreviations in the text and to generate a list of abbreviations.
+
+\begin{itemize}
+    \item Typing \verb+\Acc{}+ prints \enquote{\Acc}
+    \item Typing \verb+\Fsg{}+ prints \enquote{\Fsg}
+\end{itemize}
+
+You can specify your own abbreviations. If you add
+
+\begin{minted}{latex}
+\newacronym{wco}{WCO}{Weak crossover}
+\end{minted}
+
+to your preamble, you'll be able to use the command \verb+\gls+ to output the
+abbreviation:
+
+\begin{itemize}
+    \item Typing \verb+\gls{wco}+ prints \enquote{\gls{wco}} (on first use!)
+    \item When you type the same again, it prints \enquote{\gls{wco}}
+    \item The abbreviation is added to the list of abbreviations
+    (see~\Cref{lst:abbreviations})
+\end{itemize}
+
+\begin{listing}[H]
+    \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
+        \section*{Abbreviations}
+        \printglossary[style=inline, type=\leipzigtype]{}
+    \end{minted}
+    \caption{Commands to add list of abbreviations}\label{lst:abbreviations}
+\end{listing}
+
+\section*{Abbreviations}
+\printglossary[style=inline, type=\leipzigtype]{}
+
+\newrefcontext[sorting=nyt]
+\printbibliography
+
+\end{document}
