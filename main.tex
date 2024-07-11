@@ -58,20 +58,51 @@ your submission.
 
 \section{Style guidelines}
 
-\layout
+It's easiest to follow the style guidelines if you use the \LaTeX{} template:
+you can download it or use it directly on overleaf. We very much welcome
+submissions in \LaTeX{} as they make editing much easier.
 
-\ea
-    $A = b$ a,b,c,d, $a,b,c,d,$
+Here are a few requirements for the proceedings:
+
+\begin{itemize}
+    \item Paper size: A4
+    \item Typefaces (fonts): \textbf{Libertinus Serif} for text,
+        \textbf{Libertinus Sans} for the title, author information, and
+        headings\footnote{Why these typefaces? They are freely available
+        open-source typefaces with very good support for Unicode characters.
+        If you're using a recent version of \LaTeX{}, you'll have them
+        installed already. If not, you can download them from
+    \url{https://github.com/alerque/libertinus/releases}.}
+    \item Each paper has an abstract (below the title)
+    \item Each paper has up to five keywords (below the abstract)
+    \item For citations and the bibliography, follow the Unified Style Sheet
+        for Linguistics; if you use \LaTeX{}, you're set with this template
+        (see~\Cref{sec:bibliography})
+        \begin{itemize}
+            \item If you're not using \LaTeX{}, format your references as in
+                this document, get in touch, or consult
+                \url{https://clas.wayne.edu/linguistics/resources/style}
+        \end{itemize}
+\end{itemize}
+
+\ea Hungarian \parencite{EKiss2008}\\
+    \gll Test\\
+         test\\
+    \glt \enquote{test}
 \z
 
-\ea
-    \Acc{} á ʔ ø \textbf{å}
-\z
-
-\ea Semantic formula test
-\ea $\lambda P\lambda Q\forall x\big[P(x)\rightarrow \exists y[Q(x)(y)]\big]$
-\ex $\lambda Q\forall x\big[\textsc{glow member}(x)\rightarrow\exists y[Q(x)(y)]\big]$
-\z\z
+% \ea
+%     $A = b$ a,b,c,d, $a,b,c,d,$
+% \z
+%
+% \ea
+%     \Acc{} á ʔ ø \textbf{å}
+% \z
+%
+% \ea Semantic formula test
+% \ea $\lambda P\lambda Q\forall x\big[P(x)\rightarrow \exists y[Q(x)(y)]\big]$
+% \ex $\lambda Q\forall x\big[\textsc{glow member}(x)\rightarrow\exists y[Q(x)(y)]\big]$
+% \z\z
 
 \section{Title and authors}
 
@@ -92,7 +123,7 @@ your submission.
 }
 \end{verbatim}
 
-\section{Bibliography}
+\section{Citations and bibliography}\label{sec:bibliography}
 
 This template uses the \texttt{biblatex} package. The most common citation
 commands are the following:
@@ -167,5 +198,9 @@ abbreviation:
 
 \newrefcontext[sorting=nyt]
 \printbibliography
+
+% \pagebreak
+%
+% \layout
 
 \end{document}
