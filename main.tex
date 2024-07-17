@@ -65,6 +65,33 @@ your submission.
 Please use the templates provided. If you do, you don't need to implement any of
 the guidelines in this section yourself.
 
+It's easiest to follow the style guidelines if you use the \LaTeX{} template:
+you can download it or use it directly on overleaf. We very much welcome
+submissions in \LaTeX{} as they make editing much easier.
+
+Here are a few requirements for the proceedings:
+
+\begin{itemize}
+    \item Paper size: A4
+    \item Typefaces (fonts): \textbf{Libertinus Serif} for text,
+        \textbf{Libertinus Sans} for the title, author information, and
+        headings\footnote{Why these typefaces? They are freely available
+        open-source typefaces with very good support for Unicode characters.
+        If you're using a recent version of \LaTeX{}, you'll have them
+        installed already. If not, you can download them from
+    \url{https://github.com/alerque/libertinus/releases}.}
+    \item Each paper has an abstract (below the title)
+    \item Each paper has up to five keywords (below the abstract)
+    \item For citations and the bibliography, follow the Unified Style Sheet
+        for Linguistics; if you use \LaTeX{}, you're set with this template
+        (see~\Cref{sec:bibliography})
+        \begin{itemize}
+            \item If you're not using \LaTeX{}, format your references as in
+                this document, get in touch, or consult
+                \url{https://clas.wayne.edu/linguistics/resources/style}
+        \end{itemize}
+\end{itemize}
+
 \subsection{Headings}
 
 Headings are set in \textsf{\textbf{Libertinus Sans}} (12pt, bold, upright).
@@ -215,7 +242,7 @@ current file are shown in~\Cref{lst:metadata}.
     \caption{Specifying title and headers}\label{lst:metadata}
 \end{listing}
 
-\subsection{References and bibliography}\label{sec:bibliography}
+\subsection{Citations and references}\label{sec:bibliography}
 
 This template uses the \texttt{biblatex} package. The most common citation
 commands are the following:
@@ -290,5 +317,9 @@ abbreviation:
 
 \newrefcontext[sorting=nyt]
 \printbibliography
+
+% \pagebreak
+%
+% \layout
 
 \end{document}
