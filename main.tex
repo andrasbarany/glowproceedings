@@ -23,15 +23,19 @@
 % Specify your own packages here (keep this to a minimum!)
 \usepackage{minted}
 \newacronym{wco}{WCO}{weak crossover}
-\usepackage{layout}
+
+\usepackage{tikz}
+\usetikzlibrary{mindmap,shadows}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-    \noindent\textbf{Abstract:} This style sheet illustrates the GLOW proceedings
-    \LaTeX{} templates and describes how to use it.\\
+    \noindent\textbf{Abstract:} This document decribes the GLOW proceedings
+    style guide and provides some guidance for using it in \LaTeX{}. You can
+    simply make a copy of the file \texttt{main.tex} and use it to write your
+    GLOW proceedings paper.\\
 
     \noindent\textbf{Keywords:} \emph{keyword 1}, \emph{keyword 2}, \emph{keyword 3}
 \end{abstract}
@@ -58,41 +62,160 @@ your submission.
 
 \section{Style guidelines}
 
-\layout
+Please use the templates provided. If you do, you don't need to implement any of
+the guidelines in this section yourself.
 
-\ea
-    $A = b$ a,b,c,d, $a,b,c,d,$
+\subsection{Headings}
+
+Headings are set in \textsf{\textbf{Libertinus Sans}} (12pt, bold, upright).
+Sections (N), subsections (N.M), and subsubsections (N.M.O) are numbered. An
+optional list of abbreviations and the references have unnumbered headings.
+Use sentence case in headings, that is capitalise the first word as well as
+words which are generally capitalised such as proper names, but nothing else.
+
+\subsection{Headers and footers}
+
+In headers, the left side features the last name of one or multiple authors.
+Separate author last names using \enquote{\&} and use \enquote{X et al.} for
+more than two authors, in small capitals. The right side features the paper's
+(short) title, in italic small capitals.
+
+The footer just includes the current page number, centered.
+
+\subsection{Bibliography}
+
+The template uses the \texttt{unified} citation and bibliography style in
+\texttt{biblatex} (implementing the unified style sheet for linguistics,
+\url{https://clas.wayne.edu/linguistics/resources/style}).\footnote{You can also
+find a CLS file for this style here:
+\url{https://github.com/citation-style-language/styles/blob/master/unified-style-sheet-for-linguistics.csl}.
+You can use this with Zotero and other reference managers.} See
+also~\Cref{sec:bibliography} on more details regarding citations in \LaTeX.
+
+\subsection{Examples}
+
+Number your examples. The \LaTeX{} template uses the package
+\texttt{langsci-gb4e}.\footnote{See here: \url{https://ctan.mines-albi.fr/macros/xetex/latex/langsci/documentation/langsci-gb4.pdf}.} If you know what you're doing, you can use
+another package.
+
+Specify the language of examples, either in the text, or as part of the example,
+as in~\eqref{ex:hungarian}, and provide sources where relevant.
+
+\ea\label{ex:hungarian}Hungarian \parencite[adapted from][469]{EKiss2008}\\
+    \gll    A \emph{pro}\textsubscript{i} diák-ja-i-t \emph{minden} \emph{tanár}\textsubscript{i} szeret-i.\\
+            the {} students-\Poss.\Tsg-\Poss.\Pl-\Acc{} every teacher like-\Tsg.\Sbj>\Third.\Obj{}\\
+    \glt    `Every teacher likes his/her students.'\\
 \z
 
-\ea
-    \Acc{} á ʔ ø \textbf{å}
+Examples with multiple parts are numbered as shown in~\eqref{ex:multiple}.
+
+\ea\label{ex:multiple}Example with sub-examples\\
+    \ea One
+    \ex Two
+    \z
 \z
 
-\ea Semantic formula test
-\ea $\lambda P\lambda Q\forall x\big[P(x)\rightarrow \exists y[Q(x)(y)]\big]$
-\ex $\lambda Q\forall x\big[\textsc{glow member}(x)\rightarrow\exists y[Q(x)(y)]\big]$
-\z\z
+\subsection{Tables and figures}
 
-\section{Title and authors}
+Tables and figures should also be numbered (e.g.\ \enquote{Table 3}) and they
+should have captions below the table or figure. Examples are shown
+in~\Cref{fig:figure} and~\Cref{tab:table} on page~\pageref{fig:figure}. Do not
+use vertical bars in tables unless really necessary.
 
-\begin{verbatim}
-\author{%
-    András Bárány, Bielefeld University\\
-    \email{andras.barany@uni-bielefeld.de}
-}
-\end{verbatim}
+\begin{figure}
+    \begin{tikzpicture}
+        [mindmap, concept color=blue!50!white,
+        every annotation/.style={rounded corners, fill=red!20}
+        ]
+    
+        \node [concept] {A}
+            child [concept color=green!50, grow=0, bend left=20] {
+                node[concept] {B}
+                    [clockwise from=135]
+                    child {node[concept] {C}}
+                    child {node[concept] {C}}
+                    child {node[concept] {\dots}}
+            }
+            child [concept color=orange!50, grow=270] {
+                node[concept] {B}
+                    [clockwise from=180]
+                    child {node[concept] {C}}
+            }
+            child [grow=315, concept color=red!50] {
+                node[concept] (else) {B}
+            };
+    
+        \node [annotation, right] at (else.east) {Annotation};
+        
+    \end{tikzpicture}
+\caption{A small mindmap}\label{fig:figure}
+\end{figure}
 
-\begin{verbatim}
-\author{%
-    AuthorFirst AuthorLast, Affiliation\\
-    \href{mailto:author@affiliation.edu}{authorlast@affiliation.edu}
-    \and
-    Author2First Author2Last, Affiliation\\
-    \href{mailto:author@affiliation.edu}{author2last@affiliation.edu}
-}
-\end{verbatim}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+    \toprule
+        Column 1 & Column 2 \\
+    \midrule
+        One & Two\\
+        Three & Four\\
+    \bottomrule
+    \end{tabular}
+    \caption{This is a table}
+    \label{tab:table}
+\end{table}
 
-\section{Bibliography}
+\section{Useful tips for the \LaTeX{} template}
+
+\subsection{Title and authors}
+
+You can specify the author(s) as shown in~\Cref{lst:author-single}
+and~\Cref{lst:author-multiple}.
+
+\begin{listing}[H]
+    \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
+    \author{%
+        András Bárány, Bielefeld University\\
+        \email{andras.barany@uni-bielefeld.de}
+    }
+    \end{minted}
+    \caption{Single author}\label{lst:author-single}
+\end{listing}
+
+\begin{listing}[H]
+    \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
+    \author{%
+        AuthorFirst AuthorLast, Affiliation\\
+        \email{authorlast@affiliation.edu}
+        \and
+        Author2First Author2Last, Affiliation\\
+        \email{author2last@affiliation.edu}
+    }
+    \end{minted}
+    \caption{Multiple authors}\label{lst:author-multiple}
+\end{listing}
+
+For the headers, please complete the section in the preamble surrounded by
+\enquote{\texttt{\%\% Specify paper metadata ----}}. The settings for the
+current file are shown in~\Cref{lst:metadata}.
+
+\begin{listing}[H]
+    \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
+    %% Specify paper metadata ----
+    
+    % full title of paper
+    \newcommand{\fulltitle}{GLOW proceedings template}
+    % short title of paper for header
+    \newcommand{\shorttitle}{GLOW proceedings template}
+    % last name of author(s); for multiple use X & Y; X, Y, & Z; X et al.
+    \newcommand{\authorlast}{Bárány}
+    
+    %% Specify paper metadata ----
+    \end{minted}
+    \caption{Specifying title and headers}\label{lst:metadata}
+\end{listing}
+
+\subsection{References and bibliography}\label{sec:bibliography}
 
 This template uses the \texttt{biblatex} package. The most common citation
 commands are the following:
@@ -128,7 +251,7 @@ You can add the bibliography to the paper using the commands shown in~\Cref{lst:
     \caption{Commands to add bibliography}\label{lst:bibliography}
 \end{listing}
 
-\section{Glosses and abbreviations}
+\subsection{Glosses and abbreviations}
 
 The template loads the \texttt{leipzig} and \texttt{glossaries} packages. These can
 be used to insert abbreviations in the text and to generate a list of abbreviations.

@@ -89,15 +89,16 @@
 \renewcommand{\captionformat}{\quad}
 
 %% Headers and footers
+\usepackage{textcase}
 \usepackage[automark,markcase=lower]{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \setkomafont{pagenumber}{\footnotesize}%\sffamily}
 \setkomafont{pageheadfoot}%
     {\small\addfontfeature{LetterSpace=10,Numbers=OldStyle}\scshape\sffamily}
 \clearpairofpagestyles{}
-\ofoot[\pagemark]{\pagemark}
-\rohead{\emph{\shorttitle}}
-\lohead{\authorlast}
+\cfoot[\pagemark]{\pagemark}
+\rohead{\MakeTextLowercase{\emph{\shorttitle}}}
+\lohead{\MakeTextLowercase{\authorlast}}
 
 %% Titles and headings (KOMA-Script)
 
