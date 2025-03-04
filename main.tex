@@ -3,7 +3,7 @@
 % Add your bibliography here
 \addbibresource{main.bib}
 
-%% Specify paper metadata ----
+%% Specify paper metadata ====
 
 % full title of paper
 \newcommand{\fulltitle}{GLOW proceedings template}
@@ -12,24 +12,28 @@
 % last name of author(s); for multiple use X & Y; X, Y, & Z; X et al.
 \newcommand{\authorlast}{Bárány}
 
-%% Specify paper metadata ----
+%% Specify paper metadata ====
 
-% Specify title, author, etc.
+% Specify author(s)
 \author{%
-    András Bárány, Bielefeld University\\
-    \email{andras.barany@uni-bielefeld.de}
+    András Bárány \orcidlink{0000-0003-2356-4338}\\
+    University of Edinburgh\\
+    \email{andras.barany@ed.ac.uk}
 }
 
 % Specify your own packages here (keep this to a minimum!)
-\usepackage{minted}
+\usepackage[newfloat]{minted}
 \newacronym{wco}{WCO}{weak crossover}
 
 \usepackage{tikz}
-\usetikzlibrary{mindmap,shadows}
+\usetikzlibrary{arrows.meta}
+\usepackage[linguistics]{forest}
 
 \begin{document}
 
 \maketitle
+\thispagestyle{titlepage}
+\pagestyle{scrheadings}
 
 \begin{abstract}
     \noindent\textbf{Abstract:} This document decribes the GLOW proceedings
@@ -56,14 +60,14 @@ You can ignore \texttt{glow-proceedings-preamble.tex} and simply work with
 bibliography. If you require any additional packages, add them to
 \texttt{main.tex} just before the beginning of the document.
 
-This file describes the template and serves as a style sheet for GLOW proceedings.
-Please follow the guidelines stated here otherwise we might not be able to accept
-your submission.
+This file describes the template and serves as a style sheet for GLOW
+proceedings. Please follow the guidelines stated here otherwise we might not be
+able to accept your submission. The editors \textbf{will not correct
+submissions} but only check them for adherence to the GLOW style. Authors will
+be given an opportunity to revise their submission, but non-adherence to the
+style sheet may lead to a contribution being excluded from the proceedings.
 
 \section{Style guidelines}
-
-Please use the templates provided. If you do, you don't need to implement any of
-the guidelines in this section yourself.
 
 It's easiest to follow the style guidelines if you use the \LaTeX{} template:
 you can download it or use it directly on overleaf. We very much welcome
@@ -73,23 +77,19 @@ Here are a few requirements for the proceedings:
 
 \begin{itemize}
     \item Paper size: A4
-    \item Typefaces (fonts): \textbf{Libertinus Serif} for text,
+    \item Typefaces (\enquote{fonts}): \textbf{Libertinus Serif} for text,
         \textbf{Libertinus Sans} for the title, author information, and
         headings\footnote{Why these typefaces? They are freely available
         open-source typefaces with very good support for Unicode characters.
         If you're using a recent version of \LaTeX{}, you'll have them
         installed already. If not, you can download them from
-    \url{https://github.com/alerque/libertinus/releases}.}
+        \faExternalLink*{}~\url{https://github.com/alerque/libertinus/releases}.}
     \item Each paper has an abstract (below the title)
     \item Each paper has up to five keywords (below the abstract)
-    \item For citations and the bibliography, follow the Unified Style Sheet
-        for Linguistics; if you use \LaTeX{}, you're set with this template
-        (see~\Cref{sec:bibliography})
-        \begin{itemize}
-            \item If you're not using \LaTeX{}, format your references as in
-                this document, get in touch, or consult
-                \url{https://clas.wayne.edu/linguistics/resources/style}
-        \end{itemize}
+    \item For citations and the bibliography, follow the
+    \faExternalLink*{}~\href{https://clas.wayne.edu/linguistics/resources/style}{Unified
+    Style Sheet for Linguistics}; if you use \LaTeX{}, you're set with this
+    template (see~\Cref{sec:bibliography})
 \end{itemize}
 
 \subsection{Headings}
@@ -106,27 +106,32 @@ In headers, the left side features the last name of one or multiple authors.
 Separate author last names using \enquote{\&} and use \enquote{X et al.} for
 more than two authors, in small capitals. The right side features the paper's
 (short) title, in italic small capitals.
-
-The footer just includes the current page number, centered.
+%
+The footer consists of the centered current page number.
 
 \subsection{Bibliography}
 
 The template uses the \texttt{unified} citation and bibliography style in
-\texttt{biblatex} (implementing the unified style sheet for linguistics,
-\url{https://clas.wayne.edu/linguistics/resources/style}).\footnote{You can also
-find a CLS file for this style here:
-\url{https://github.com/citation-style-language/styles/blob/master/unified-style-sheet-for-linguistics.csl}.
-You can use this with Zotero and other reference managers.} See
-also~\Cref{sec:bibliography} on more details regarding citations in \LaTeX.
+\texttt{biblatex} (implementing the
+\faExternalLink*{}~\href{https://clas.wayne.edu/linguistics/resources/style}{Unified
+    Style Sheet for Linguistics}).\footnote{You can also find a CLS file for use
+    with Zotero and other reference managers here:
+\faExternalLink*{}~\url{https://github.com/citation-style-language/styles/blob/master/unified-style-sheet-for-linguistics.csl}}
+See also~\Cref{sec:bibliography} on more details regarding citations in \LaTeX.
 
 \subsection{Examples}
 
 Number your examples. The \LaTeX{} template uses the package
-\texttt{langsci-gb4e}.\footnote{See here: \url{https://ctan.mines-albi.fr/macros/xetex/latex/langsci/documentation/langsci-gb4.pdf}.} If you know what you're doing, you can use
-another package.
+\faExternalLink*{}
+\href{https://ctan.mines-albi.fr/macros/xetex/latex/langsci/documentation/langsci-gb4.pdf}{\texttt{langsci-gb4e}}.
+If you know what you're doing, you can use another package.
 
 Specify the language of examples, either in the text, or as part of the example,
-as in~\eqref{ex:hungarian}, and provide sources where relevant.
+as in~\eqref{ex:hungarian}, and provide sources where relevant. Provide glosses
+for examples where relevant and use the
+\faExternalLink*{}~\href{https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf}{Leipzig
+Glossing Rules}. If you use the \texttt{leipzig} package
+(see~\Cref{sub:glosses}), you can automatise using glosses to a large degree.
 
 \ea\label{ex:hungarian}Hungarian \parencite[adapted from][469]{EKiss2008}\\
     \gll    A \emph{pro}\textsubscript{i} diák-ja-i-t \emph{minden} \emph{tanár}\textsubscript{i} szeret-i.\\
@@ -135,6 +140,8 @@ as in~\eqref{ex:hungarian}, and provide sources where relevant.
 \z
 
 Examples with multiple parts are numbered as shown in~\eqref{ex:multiple}.
+Syntax trees should be numbered like examples rather than like figures,
+see~\eqref{ex:tree}, for example.
 
 \ea\label{ex:multiple}Example with sub-examples\\
     \ea One
@@ -142,43 +149,28 @@ Examples with multiple parts are numbered as shown in~\eqref{ex:multiple}.
     \z
 \z
 
+\ea\label{ex:tree}A simple structure\\
+    \begin{forest}
+        [XP
+            [YP,name=yp ]
+            [Xʹ
+                [X,name=x ]  
+                [ZP ]
+            ]
+        ]
+        \draw [dashed, <->, >=Triangle, bend left=60]
+            (x.200) to node [left, font=\small] {Agree} (yp.south west);
+    \end{forest}
+\z
+
 \subsection{Tables and figures}
 
 Tables and figures should also be numbered (e.g.\ \enquote{Table 3}) and they
-should have captions below the table or figure. Examples are shown
-in~\Cref{fig:figure} and~\Cref{tab:table} on page~\pageref{fig:figure}. Do not
-use vertical bars in tables unless really necessary.
+should have captions below the table or figure. An example is shown
+in~\Cref{tab:table}. Do not use vertical bars in tables
+unless really necessary.
 
-\begin{figure}
-    \begin{tikzpicture}
-        [mindmap, concept color=blue!50!white,
-        every annotation/.style={rounded corners, fill=red!20}
-        ]
-    
-        \node [concept] {A}
-            child [concept color=green!50, grow=0, bend left=20] {
-                node[concept] {B}
-                    [clockwise from=135]
-                    child {node[concept] {C}}
-                    child {node[concept] {C}}
-                    child {node[concept] {\dots}}
-            }
-            child [concept color=orange!50, grow=270] {
-                node[concept] {B}
-                    [clockwise from=180]
-                    child {node[concept] {C}}
-            }
-            child [grow=315, concept color=red!50] {
-                node[concept] (else) {B}
-            };
-    
-        \node [annotation, right] at (else.east) {Annotation};
-        
-    \end{tikzpicture}
-\caption{A small mindmap}\label{fig:figure}
-\end{figure}
-
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{ll}
     \toprule
@@ -196,39 +188,43 @@ use vertical bars in tables unless really necessary.
 
 \subsection{Title and authors}
 
-You can specify the author(s) as shown in~\Cref{lst:author-single}
-and~\Cref{lst:author-multiple}.
+You can specify the author(s) (and acknowledgements) as shown
+in~\Cref{lst:author-single,lst:author-multiple}.
 
-\begin{listing}[H]
+\begin{listing}[ht]
     \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
-    \author{%
-        András Bárány, Bielefeld University\\
-        \email{andras.barany@uni-bielefeld.de}
+    \author{% 
+        András Bárány \orcidlink{0000-0003-2356-4338}%
+        \thanks{This is the place for acknowledgements.}\\
+        University of Edinburgh\\
+        \email{andras.barany@ed.ac.uk}
     }
     \end{minted}
     \caption{Single author}\label{lst:author-single}
 \end{listing}
 
-\begin{listing}[H]
+\begin{listing}[ht]
     \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
     \author{%
-        AuthorFirst AuthorLast, Affiliation\\
+        AuthorFirst AuthorLast\\
+        Affiliation\\
         \email{authorlast@affiliation.edu}
         \and
-        Author2First Author2Last, Affiliation\\
+        Author2First Author2Last\\
+        Affiliation\\
         \email{author2last@affiliation.edu}
     }
     \end{minted}
     \caption{Multiple authors}\label{lst:author-multiple}
 \end{listing}
 
-For the headers, please complete the section in the preamble surrounded by
-\enquote{\texttt{\%\% Specify paper metadata ----}}. The settings for the
+For the headers, please complete the section in the preamble surrounded by 
+\enquote{\texttt{\%\% Specify paper metadata ====}} The settings for the
 current file are shown in~\Cref{lst:metadata}.
 
-\begin{listing}[H]
+\begin{listing}[ht]
     \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
-    %% Specify paper metadata ----
+    %% Specify paper metadata ====
     
     % full title of paper
     \newcommand{\fulltitle}{GLOW proceedings template}
@@ -237,7 +233,7 @@ current file are shown in~\Cref{lst:metadata}.
     % last name of author(s); for multiple use X & Y; X, Y, & Z; X et al.
     \newcommand{\authorlast}{Bárány}
     
-    %% Specify paper metadata ----
+    %% Specify paper metadata ====
     \end{minted}
     \caption{Specifying title and headers}\label{lst:metadata}
 \end{listing}
@@ -268,9 +264,10 @@ Each of these commands can be extended with optional arguments:
     \end{itemize}
 \end{itemize}
 
-You can add the bibliography to the paper using the commands shown in~\Cref{lst:bibliography}.
+You can add the bibliography to the paper using the commands shown
+in~\Cref{lst:bibliography}.
 
-\begin{listing}[H]
+\begin{listing}[h!t]
     \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
         \newrefcontext[sorting=nyt]
         \printbibliography
@@ -278,7 +275,7 @@ You can add the bibliography to the paper using the commands shown in~\Cref{lst:
     \caption{Commands to add bibliography}\label{lst:bibliography}
 \end{listing}
 
-\subsection{Glosses and abbreviations}
+\subsection{Glosses and abbreviations}\label{sub:glosses}
 
 The template loads the \texttt{leipzig} and \texttt{glossaries} packages. These can
 be used to insert abbreviations in the text and to generate a list of abbreviations.
@@ -304,7 +301,7 @@ abbreviation:
     (see~\Cref{lst:abbreviations})
 \end{itemize}
 
-\begin{listing}[H]
+\begin{listing}[ht]
     \begin{minted}[linenos,bgcolor=gray!10!white,autogobble]{latex}
         \section*{Abbreviations}
         \printglossary[style=inline, type=\leipzigtype]{}
@@ -312,14 +309,18 @@ abbreviation:
     \caption{Commands to add list of abbreviations}\label{lst:abbreviations}
 \end{listing}
 
+\section{Questions, comments, \dots{}}
+
+If you have any questions or comments, get in touch!
+
 \section*{Abbreviations}
 \printglossary[style=inline, type=\leipzigtype]{}
 
+\section*{Acknowledgements}
+
+This is the place for acknowledgements.
+
 \newrefcontext[sorting=nyt]
 \printbibliography
-
-% \pagebreak
-%
-% \layout
 
 \end{document}

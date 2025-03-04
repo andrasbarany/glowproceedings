@@ -2,22 +2,19 @@
 \documentclass[%
     fontsize=12pt,
     numbers=noenddot,
+    footheight=100pt,
     paper=a4,
     toc=bib,
 ]{scrartcl}
 
-% Language using polyglossia
-\usepackage{polyglossia}
-\setmainlanguage[variant=british,ordinalmonthday=false]{english}
+% Language using babel
+\usepackage[english]{babel}
 
 % biblatex
 \usepackage[%
     backend=biber,
     doi=true,
-    language=british,
-    maxbibnames=9,
-    maxcitenames=2,
-    mincrossrefs=3,
+    language=english,
     natbib=true,
     sortcites,
     style=unified,
@@ -26,19 +23,20 @@
 
 \assignrefcontextentries[]{*}
 
-% remove "p(p)."
-\DeclareFieldFormat{postnote}{#1} % no postnote prefix in "normal" citation commands
+% Remove "p(p)." in regular citation commands;
+% No longer necessary at some point because default in unified
+\DefineBibliographyStrings{english}{%
+  page  = {},
+  pages = {},
+}
 
-% no shorthands
-
+% No shorthands
 \DeclareFieldInputHandler{shorthand}{\def\NewValue{}}
 
 % New citeposs command, more flexible
-
 \usepackage{xifthen}
 
-% use pubstate
-
+% Use pubstate but don't print pubstate in the bibliography apart from the year
 \DeclareSourcemap{%
     \maps[datatype=bibtex]{%
         \map[overwrite=true]{% Notice the overwrite: replace one field with another
@@ -47,37 +45,29 @@
         }
     }
 }
-
-%% but don't print pubstate in the bibliography apart from the year
-
 \AtEveryBibitem{%
     \clearfield{pubstate}%
 }
 
-%% add "to appear" as a proper pubstate, including capitalisation
-
+% Add "to appear" as a proper pubstate, including capitalisation
 \NewBibliographyString{toappear}
 \DefineBibliographyStrings{english}{%
   toappear = {to appear},
 }
 
-
-%% Fonts, languages
-
+% Fonts, languages
 \usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}
-
-% kxetex
 \usepackage{fontspec}
-\defaultfontfeatures{Mapping=tex-text}
-
+\defaultfontfeatures{Ligatures=TeX}
 \usepackage[sb]{libertinus-otf}
 \usepackage[scale=MatchLowercase]{FiraMono}
+\usepackage{fontawesome5}
 
 % Nicer tables
 \usepackage{booktabs}
 \usepackage[table]{xcolor}
 \usepackage{colortbl}
-\usepackage{microtype}
+\usepackage[nopatch=footnote]{microtype}
 \usepackage{tabularx}
 
 \usepackage[unicode,hidelinks]{hyperref}
@@ -89,16 +79,24 @@
 \renewcommand{\captionformat}{\quad}
 
 %% Headers and footers
-\usepackage{textcase}
-\usepackage[automark,markcase=lower]{scrlayer-scrpage}
+%\usepackage[automark,markcase=lower]{scrlayer-scrpage}
+\usepackage{scrlayer-scrpage}
+\newpairofpagestyles{titlepage}{%
+    \setkomafont{pageheadfoot}{%
+        \small\normalfont 
+    }
+    \rohead{}
+    \lohead{}
+    \cfoot{\printcc}
+}
 \pagestyle{scrheadings}
 \setkomafont{pagenumber}{\footnotesize}%\sffamily}
 \setkomafont{pageheadfoot}%
     {\small\addfontfeature{LetterSpace=10,Numbers=OldStyle}\scshape\sffamily}
 \clearpairofpagestyles{}
 \cfoot[\pagemark]{\pagemark}
-\rohead{\MakeTextLowercase{\emph{\shorttitle}}}
-\lohead{\MakeTextLowercase{\authorlast}}
+\rohead{\MakeLowercase{\emph{\shorttitle}}}
+\lohead{\MakeLowercase{\authorlast}}
 
 %% Titles and headings (KOMA-Script)
 
@@ -131,7 +129,30 @@
 \clubpenalty=10000
 
 % useful 
+\usepackage{orcidlink}
 \newcommand{\email}[1]{\href{mailto:#1}{#1}}
+
+% copyright notice at end
+\usepackage[framemethod=TikZ]{mdframed}
+\newenvironment{ccnotice}[1]{%
+    \begin{mdframed}[%
+        linewidth=0pt,
+        backgroundcolor=gray!10!white,
+        font=\sffamily,
+    ]\relax%
+}{\end{mdframed}}
+
+\newcommand\printcc{%
+    \centering
+    \begin{ccnotice}
+    {}\makebox[0pt][r]{\copyright{} } \begin{refsection}\fullcite{Bárány2025glow}\end{refsection} \\
+    %\begin{flushright}
+    %This work is licensed under \href{https://creativecommons.org/licenses/by-sa/4.0/legalcode.en}{\texttt{CC BY-SA 4.0}} %
+    \hspace*{\fill}\href{https://creativecommons.org/licenses/by-sa/4.0/legalcode.en}{\texttt{CC~BY-SA~4.0}} \faCreativeCommons{}~\faCreativeCommonsBy{} ~\faCreativeCommonsSa{}
+    %\end{flushright}
+    \end{ccnotice}
+}
+
 \usepackage[autostyle=true,english=american]{csquotes}
 \renewcommand*{\mkccitation}[1]{ (#1)}
 
