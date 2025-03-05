@@ -137,6 +137,8 @@
 \newenvironment{ccnotice}[1]{%
     \begin{mdframed}[%
         linewidth=0pt,
+        leftmargin=1pt,
+        rightmargin=1pt,
         backgroundcolor=gray!10!white,
         font=\sffamily,
     ]\relax%
@@ -145,11 +147,10 @@
 \newcommand\printcc{%
     \centering
     \begin{ccnotice}
-    {}\makebox[0pt][r]{\copyright{} } \begin{refsection}\fullcite{Bárány2025glow}\end{refsection} \\
-    %\begin{flushright}
-    %This work is licensed under \href{https://creativecommons.org/licenses/by-sa/4.0/legalcode.en}{\texttt{CC BY-SA 4.0}} %
+    {}\copyright{} %
+%    \begin{refsection}
+    \fullcite{Lastname2025glow}\\%\end{refsection} \\
     \hspace*{\fill}\href{https://creativecommons.org/licenses/by-sa/4.0/legalcode.en}{\texttt{CC~BY-SA~4.0}} \faCreativeCommons{}~\faCreativeCommonsBy{} ~\faCreativeCommonsSa{}
-    %\end{flushright}
     \end{ccnotice}
 }
 
