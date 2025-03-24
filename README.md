@@ -6,7 +6,7 @@ This repository hosts files that you can use to write proceedings for the annual
 
 ### Overleaf
 
-If you use [overleaf](https://www.overleaf.com/), you can [create a project](https://www.overleaf.com/latex/templates/glow-proceedings-template/nnzzbmzvfkhm) using the GLOW proceedings template on overleaf. In case you do not have a paid version of overleaf and the project times out, consider [compiling your work on your own computer#locally].
+If you use [overleaf](https://www.overleaf.com/), you can [create a project](https://www.overleaf.com/latex/templates/glow-proceedings-template/nnzzbmzvfkhm) using the GLOW proceedings template on overleaf. In case you do not have a paid version of overleaf and the project times out, consider [on your own computer](#locally).
 
 ### Locally
 
